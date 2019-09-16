@@ -15,5 +15,4 @@ lib/file-compiler/bin
 *.ipr
 *.iws
 .idea
-.target
-
+target/*
