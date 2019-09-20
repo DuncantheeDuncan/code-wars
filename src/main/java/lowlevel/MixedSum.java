@@ -1,6 +1,10 @@
 package lowlevel;
 
+
+
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 public class MixedSum {
 
@@ -10,17 +14,21 @@ public class MixedSum {
      */
     public int sum(List<?> mixed) {
 
-        System.out.println(mixed+ " this is mixed");
-        int ii = 
-
         int total = 0;
-        for (Object i : mixed){
-            int mixednumbers =0;
-            System.out.println(i);
-
-        }
-
-        System.out.println("The total sum is: "+ total);
-        return -1;
+        for (Object i : mixed){total += parseInt(String.valueOf(i));}
+        return total;
+//        int sum = 0;
+//
+//        for (Object element : mixed)
+//        {
+//            if (element instanceof Integer)
+//            {
+//                sum += (Integer) element;
+//            }
+//            else if (element instanceof String){
+//                sum += Integer.parseInt( (String) element );
+//            }
+//        }
+//        return sum;
     }
 }
