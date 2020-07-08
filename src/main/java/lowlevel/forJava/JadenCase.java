@@ -1,4 +1,4 @@
-package lowlevel;
+package lowlevel.forJava;
 
 public class JadenCase {
 

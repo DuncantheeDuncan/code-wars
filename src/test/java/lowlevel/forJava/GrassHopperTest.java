@@ -1,4 +1,4 @@
-package lowlevel;
+package lowlevel.forJava;
 
 import junit.framework.TestCase;
 import org.junit.Test;
