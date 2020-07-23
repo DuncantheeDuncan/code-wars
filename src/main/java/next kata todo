@@ -1,34 +1,43 @@
+SQL Basics: Simple JOIN with COUNT
 
 
-public class HumanReadableTime {
-  public static String makeReadable(int seconds) {
-    // Do something
-    return Integer.toString(seconds);
-  }
-}
+For this challenge you need to create a simple SELECT statement that will return all columns from the people table, and join to the toys table so that you can return the COUNT of the toys
+
+people table schema
+id
+name
+toys table schema
+id
+name
+people_id
+You should return all people fields as well as the toy count as "toy_count".
+
+NOTE: You're solution should use pure SQL. Ruby is used within the test cases to do the actual testing.
 
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
-public class ExampleTest {
-  @Test
-  public void Tests() {
-    assertEquals("makeReadable(0)", "00:00:00", HumanReadableTime.makeReadable(0));
-    assertEquals("makeReadable(5)", "00:00:05", HumanReadableTime.makeReadable(5));
-    assertEquals("makeReadable(60)", "00:01:00", HumanReadableTime.makeReadable(60));
-    assertEquals("makeReadable(86399)", "23:59:59", HumanReadableTime.makeReadable(86399));
-    assertEquals("makeReadable(359999)", "99:59:59", HumanReadableTime.makeReadable(359999));
-  }
-}
+/////
+
+-- Create your SELECT statement here
 
 
-Write a function, which takes a non-negative integer (seconds) as input and returns the time in a
- human-readable format (HH:MM:SS)
+results = run_sql
 
-HH = hours, padded to 2 digits, range: 00 - 99
-MM = minutes, padded to 2 digits, range: 00 - 59
-SS = seconds, padded to 2 digits, range: 00 - 59
-The maximum time never exceeds 359999 (99:59:59)
-
-You can find some examples in the test fixtures.
+describe :items do
+   it "should return 2 items" do
+    expect(results.count).to eq 2
+   end
+   
+   it "should return names" do
+     results.each do |result|
+       expect(result[:name]).to eq find_record(:people, result[:id]).name
+     end
+   end
+   
+   it "should return toy count" do
+    results.each do |result|
+      toys = find_records_by_people_id(:toys, result[:id])
+      expect(result[:toy_count]).to eq toys.count
+    end
+   end
+end
